@@ -9,6 +9,241 @@
     </style>
 </head>
 <body>
-    <!-- Ваш контент здесь -->
+    <<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>AndrozonTV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7a7a7a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+        .player-container {
+            text-align: center;
+            width: 500px;
+        }
+        .search-container {
+            margin-bottom: 40px;
+        }
+        .channel-list {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        video {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <h1>Androzon TV</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Suchen..." onkeyup="searchChannels()">
+        </div>
+        <select id="channelSelect" class="channel-list" onchange="changeChannel()">
+            <option value="" selected disabled>Auswahl</option>
+            <!-- Каналы будут добавлены динамически -->
+        </select>
+        <video id="videoPlayer" controls>
+            Ваш браузер не поддерживает элемент <code>video</code>.
+        </video>
+    </div>
+    <script>
+        const channelSelect = document.getElementById('channelSelect');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        // Функция для изменения канала
+        function changeChannel() {
+            const selectedUrl = channelSelect.value;
+            videoPlayer.src = selectedUrl;
+            videoPlayer.play();
+        }
+
+        // Функция для поиска каналов
+        function searchChannels() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const options = channelSelect.getElementsByTagName('option');
+            for (let i = 0; i < options.length; i++) {
+                const txtValue = options[i].textContent || options[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    options[i].style.display = "";
+                } else {
+                    options[i].style.display = "none";
+                }
+            }
+        }
+
+ // Функция для получения списка каналов из M3U файла
+        async function fetchChannels(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const lines = text.split('\n');
+                const channels = [];
+                let currentName = '';
+
+                lines.forEach(line => {
+                    if (line.startsWith('#EXTINF')) {
+                        currentName = line.split(',')[1].trim();
+                    } else if (line && !line.startsWith('#')) {
+                        channels.push({ name: currentName, url: line.trim() });
+                        currentName = ''; // Сброс имени после добавления канала в список
+                    }
+                });
+
+                return channels;
+            } catch (error) {
+                console.error('Ошибка при загрузке каналов:', error);
+                return [];
+            }
+        }
+
+// Инициализация списка каналов при загрузке страницы
+        document.addEventListener('DOMContentLoaded', async () => {
+            const channels = await fetchChannels('https://m3u.in/pl/6a0e25594562bb158acc4fe1ae2133f1-12d09c3e8ad57ce519274617092c160d.m3u');
+            
+            if (channels.length > 0) {
+                channels.forEach(channel => {
+                    const option = document.createElement('option');
+                    option.value = channel.url;
+                    option.textContent = channel.name;
+                    channelSelect.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.value = "";
+                option.textContent = "Не удалось загрузить каналы";
+                channelSelect.appendChild(option);
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Радио Плеер</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7a7a7a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+        .player-container {
+            text-align: center;
+            width: 500px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .station-list {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        audio {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <h1>Androzon FM</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Suchen..." onkeyup="searchStations()">
+        </div>
+        <select id="stationSelect" class="station-list" onchange="changeStation()">
+            <option value="" selected disabled>Auswahl</option>
+            <!-- Радиостанции будут добавлены динамически -->
+        </select>
+        <audio id="audioPlayer" controls>
+            Ваш браузер не поддерживает элемент <code>audio</code>.
+        </audio>
+    </div>
+    <script>
+        const stationSelect = document.getElementById('stationSelect');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Функция для изменения радиостанции
+        function changeStation() {
+            const selectedUrl = stationSelect.value;
+            audioPlayer.src = selectedUrl;
+            audioPlayer.play();
+        }
+
+        // Функция для поиска радиостанций
+        function searchStations() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const options = stationSelect.getElementsByTagName('option');
+            for (let i = 0; i < options.length; i++) {
+                const txtValue = options[i].textContent || options[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    options[i].style.display = "";
+                } else {
+                    options[i].style.display = "none";
+                }
+            }
+        }
+
+        // Функция для получения списка станций из M3U файла
+        async function fetchStations(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const lines = text.split('\n');
+                const stations = [];
+                let currentName = '';
+
+                lines.forEach(line => {
+                    if (line.startsWith('#EXTINF')) {
+                        currentName = line.split(',')[1].trim();
+                    } else if (line && !line.startsWith('#')) {
+                        stations.push({ name: currentName, url: line.trim() });
+                        currentName = ''; // Сброс имени после добавления в список
+                    }
+                });
+
+                return stations;
+            } catch (error) {
+                console.error('Ошибка при загрузке станций:', error);
+                return [];
+            }
+        }
+
+         // Инициализация списка станций при загрузке страницы
+        document.addEventListener('DOMContentLoaded', async () => {
+            const stations = await fetchStations('https://m3u.ch/pl/9649fad4518f94a4a7858643856defb8_9c3b7d0a9dfcd07f0ced4d0355a94b2e.m3u');
+            
+            if (stations.length > 0) {
+                stations.forEach(station => {
+                    const option = document.createElement('option');
+                    option.value = station.url;
+                    option.textContent = station.name;
+                    stationSelect.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.value = "";
+                option.textContent = "Не удалось загрузить станции";
+                stationSelect.appendChild(option);
+            }
+        });
+</script>
+</body>
+</html>>
 </body>
 </html>
