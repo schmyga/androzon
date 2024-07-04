@@ -107,7 +107,7 @@
 
 // Инициализация списка каналов при загрузке страницы
         document.addEventListener('DOMContentLoaded', async () => {
-            const channels = await fetchChannels('https://m3u.in/pl/6a0e25594562bb158acc4fe1ae2133f1-12d09c3e8ad57ce519274617092c160d.m3u');
+            const channels = await fetchChannels('https://m3u.work/2YyFtA.m3u');
             
             if (channels.length > 0) {
                 channels.forEach(channel => {
@@ -226,7 +226,7 @@
 
          // Инициализация списка станций при загрузке страницы
         document.addEventListener('DOMContentLoaded', async () => {
-            const stations = await fetchStations('https://m3u.ch/pl/9649fad4518f94a4a7858643856defb8_9c3b7d0a9dfcd07f0ced4d0355a94b2e.m3u');
+            const stations = await fetchStations('https://m3u.work/2YyFtA.m3u');
             
             if (stations.length > 0) {
                 stations.forEach(station => {
