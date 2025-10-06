@@ -1,20 +1,25 @@
-// Androzon Plugin
-(function(plugin) {
+(function(Plugin, Manager) {
     
-    console.log('Androzon loaded');
+    var plugin = {};
     
-    plugin.add({
-        name: 'Androzon',
-        version: '1.0.0',
-        
-        search: function(text) {
-            return new Promise((resolve) => {
-                resolve([{
-                    title: 'Test: ' + text,
-                    description: 'Androzon works!'
-                }]);
-            });
-        }
-    });
+    plugin.name = 'Androzon';
+    plugin.version = '1.0.0';
     
-})(this);
+    plugin.search = function(text, type) {
+        return new Promise(function(resolve){
+            // Тестовые данные
+            var items = [{
+                title: 'Androzon: ' + text,
+                description: 'Плагин работает!',
+                year: '2024', 
+                type: type || 'movie'
+            }];
+            
+            resolve(items);
+        });
+    };
+    
+    // Регистрация плагина
+    Manager.add(plugin);
+    
+})(Plugin, Manager);
