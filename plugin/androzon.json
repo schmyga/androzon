@@ -1,0 +1,15 @@
+{
+    "name": "Androzon",
+    "version": "1.0.0",
+    "update": "https://raw.githubusercontent.com/yourusername/Androzon/main/plugin/androzon.json",
+    "icon": "https://raw.githubusercontent.com/yourusername/Androzon/main/plugin/androzon.png",
+    "url": "https://raw.githubusercontent.com/yourusername/Androzon/main/plugin/main.js",
+    "description": "Плагин для поиска и просмотра контента с различных источников",
+    "background": "#1a1a2e",
+    "component": false,
+    "platform": ["android","tizen","web"],
+    "lang": {
+        "ru": {},
+        "en": {}
+    }
+}
