@@ -1,9 +1,9 @@
 {
     "name": "Androzon",
-    "version": "1.0.0",
-    "update": "https://schmyga.github.io/androzon/plugin/androzon.json",
-    "icon": "https://schmyga.github.io/androzon/plugin/androzon.png",
-    "url": "https://schmyga.github.io/androzon/plugin/main.js",
+    "version": "1.0.1",
+    "update": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.1/plugin/androzon.json",
+    "icon": "https://raw.githubusercontent.com/lampa-player/lampa/master/src/img/icon.png",
+    "url": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.1/plugin/main.js",
     "description": "Плагин для поиска и просмотра контента с различных источников",
     "background": "#1a1a2e",
     "component": false,
