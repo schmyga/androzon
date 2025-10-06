@@ -1,10 +1,10 @@
 {
     "name": "Androzon",
-    "version": "1.0.1",
-    "update": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.1/plugin/androzon.json",
-    "icon": "https://raw.githubusercontent.com/lampa-player/lampa/master/src/img/icon.png",
-    "url": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.1/plugin/main.js",
-    "description": "Плагин для поиска и просмотра контента с различных источников",
+    "version": "1.0.3",
+    "update": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.3/plugin/androzon.json",
+    "icon": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.3/plugin/androzon.png",
+    "url": "https://cdn.jsdelivr.net/gh/schmyga/androzon@v1.0.3/plugin/main.js",
+    "description": "Плагин для поиска контента",
     "background": "#1a1a2e",
     "component": false,
     "platform": ["android","tizen","web"]
