@@ -1,0 +1,11 @@
+{
+    "name": "Androzon",
+    "version": "1.0.0",
+    "update": "https://cdn.jsdelivr.net/gh/schmyga/androzon@main/plugin.json",
+    "icon": "https://raw.githubusercontent.com/lampa-player/lampa/master/src/img/icon.png", 
+    "url": "https://cdn.jsdelivr.net/gh/schmyga/androzon@main/plugin.js",
+    "description": "Androzon",
+    "component": false,
+    "platform": ["android","tizen","web"],
+    "background": "#1a1a2e"
+}
