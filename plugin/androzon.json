@@ -4,8 +4,12 @@
     "update": "https://schmyga.github.io/androzon/plugin/androzon.json",
     "icon": "https://androzon.my1.ru/s_logo.png",
     "url": "https://schmyga.github.io/androzon/plugin/main.js",
-    "description": "Плагин для поиска контента",
+    "description": "Плагин для поиска и просмотра контента с различных источников",
     "background": "#1a1a2e",
     "component": false,
-    "platform": ["android","tizen","web"]
+    "platform": ["android","tizen","web"],
+    "lang": {
+        "ru": {},
+        "en": {}
+    }
 }
